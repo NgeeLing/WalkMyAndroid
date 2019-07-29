@@ -28,12 +28,11 @@ class FetchAddressTask extends AsyncTask<Location, Void, String> {
 
     @Override
     protected String doInBackground(Location... params) {
-        // Set up the geocoder
         Geocoder geocoder = new Geocoder(mContext,
                 Locale.getDefault());
 
-        // Get the passed in location
         Location location = params[0];
+
         List<Address> addresses = null;
         String resultMessage = "";
 
@@ -81,13 +80,7 @@ class FetchAddressTask extends AsyncTask<Location, Void, String> {
 
         return resultMessage;
     }
-
-    /**
-     * Called once the background thread is finished and updates the
-     * UI with the result.
-     * @param address The resulting reverse geocoded address, or error
-     *                message if the task failed.
-     */
+    
     @Override
     protected void onPostExecute(String address) {
         mListener.onTaskCompleted(address);
